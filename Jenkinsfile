@@ -9,17 +9,17 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh './mvnw clean install -DskipTests'
+                    sh './mvnw package'
                 }
             }
         }
-        stage('Test') {
-            steps {
-                script {
-                    sh './mvnw test'
-                }
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         script {
+        //             sh './mvnw test'
+        //         }
+        //     }
+        // }
         stage('Deploy') {
             steps {
                 script {
