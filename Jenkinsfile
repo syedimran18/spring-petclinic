@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = 'petclinic'
-        // HOST_PORT = '8081'
-        // CONTAINER_PORT = '8080'
+        HOST_PORT = '8081'
+        CONTAINER_PORT = '8080'
     }
     stages {
         stage('Checkout') {
@@ -20,14 +20,14 @@ pipeline {
                 }
             }
         }
-        // stage('Docker Build') {
-        //     steps {
-        //         // Build the Docker image from the Dockerfile
-        //         script {
-        //             sh "docker build -t ${DOCKER_IMAGE}:latest ."
-        //         }
-        //     }
-        // }
+        stage('Docker Build') {
+            steps {
+                // Build the Docker image from the Dockerfile
+                script {
+                    sh "docker build -t ${DOCKER_IMAGE}:latest ."
+                }
+            }
+        }
         stage('Deploy Locally') {
             steps {
                 script {
@@ -38,8 +38,8 @@ pipeline {
                     """
 
                     // Run the new Docker container and map ports
-                    // sh "docker run -d --name spring-petclinic -p ${HOST_PORT}:${CONTAINER_PORT} ${DOCKER_IMAGE}:latest"
-                    sh 'java -jar target/*.jar'
+                    sh "docker run -d --name spring-petclinic -p ${HOST_PORT}:${CONTAINER_PORT} ${DOCKER_IMAGE}:latest"
+                    // sh 'java -jar target/*.jar'
                 }
             }
         }
