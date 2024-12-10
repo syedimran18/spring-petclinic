@@ -16,7 +16,7 @@ pipeline {
             steps {
                 // Build the project using Maven
                 script {
-                    sh './mvnw package'
+                    sh 'ls -la && pwd &&./mvnw package'
                 }
             }
         }
