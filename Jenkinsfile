@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', credentialsId: 'github-token', url: 'https://github.com/syedimran18/spring-petclinic.git'
+                git branch: 'main', credentialsId: 'github-token', url: 'https://github.com/syedimran18/spring-petclinic.git'
             }
         }
         stage('Build') {
@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Add deployment commands here (e.g., to a server, Docker container)
+                    sh 'ls && pwd'
                 }
             }
         }
